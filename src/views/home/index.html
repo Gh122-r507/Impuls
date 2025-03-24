@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/spectre/spectre.min.css">
+    <link rel="stylesheet" href="styles/spectre/spectre-exp.css">
+    <link rel="stylesheet" href="styles/spectre/spectre-icons.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/homeSentComplaint.js" defer></script>
+    <script src="/scripts/homeGetComplaints.js" defer></script>
+    <link rel="icon" sizes="16x16" href="/styles/icons/icon.svg">
+    <link rel="icon" sizes="32x32" href="/styles/icons/icon.svg">
+    <link rel="icon" sizes="96x96" href="/styles/icons/icon.svg">
+    <title><?= $pageTitle ?></title>
+</head>
+<body>
+<header class="navbar">
+    <section class="navbar-left">
+        <img src="/styles/icons/Impuls.svg" alt="Impuls-logo" title="Импульс">
+    </section>
+    <section class="navbar-section">
+        <div class="user-info">
+            <div class="user-card">
+                <img src="/styles/icons/user.svg" alt="User Avatar" class="user-avatar">
+                <div class="user-details">
+                    <h2><?= $_SESSION['username'] ?></h2>
+                </div>
+            </div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="dropdown-container">
+                    <ul>
+                        <li id="userProfileButton">Профиль</li>
+                        <li id="settingsButton">Настройки</li>
+                        <?php if($userInfo['role'] === 'admin'): ?>
+                        <a style="text-decoration: none" href="/admin-panel"><li id="dashboard-link">Админ-панель</li></a>
+                        <?php endif ?>
+                        <li class="exit-container">
+                            <form method="post" action="/logout">
+                                <button><img src="/styles/icons/logout.svg" alt="exit-icon" class="exit-icon"></button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="user-info">
+        </div>
+        <!--        <a href="https://t.me/gh122r" class="btn btn-link"><img class="navbar-element" src="/styles/icons/telegram.png" alt=""></a>
+                <a href="https://github.com/Gh122-r507" class="btn btn-link"><img class="navbar-element" src="/styles/icons/github-mark-white.svg" alt="github"></a>-->
+    </section>
+</header>
+<div class="profile">
+    <div class="profile-container">
+        <ul class="profile-container__user-info">
+            <li><span><?= $userInfo['first_name'] ?> </span><span><?= $userInfo['surname'] ?></span></li>
+            <li>Логин: <?= $userInfo['username'] ?></li>
+            <li>Почта: <?= $userInfo['email'] ?></li>
+            <li>Роль: <?= $userInfo['role'] ?></li>
+        </ul>
+    </div>
+</div>
+<main class="container grid-lg">
+    <div class="complaint-container">
+        <div class="complaint-form">
+            <div class="complaint-header">
+                <h4>Отправить обращение</h4>
+            </div>
+            <form id="complaintForm" action="/" method="POST">
+                <div class="form-group">
+                    <div class="form-group">
+                        <select class="form-select form-in" id="department_id" name="departmentId" required>
+                            <?php foreach ($departments as $department): ?>
+                            <option value="<?= $department['id'] ?>"><?= $department['department'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-select form-in" id="category_id" name="problemCategoryId" required>
+                            <?php foreach ($problemCategories as $category): ?>
+                            <option value="<?= $category['id'] ?>"><?= $category['problem'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <label class="form-label none" for="description">Описание жалобы</label>
+                    <textarea class="form-input form-textarea" id="description" name="description"
+                              placeholder="Опишите проблему" cols="10" rows="4" required title=":)"></textarea>
+                </div>
+                <div class="form-group form-button-group">
+                    <button type="submit" class="form-btn">Отправить</button>
+                </div>
+            </form>
+        </div>
+        <div class="complaint-status">
+        </div>
+    </div>
+</main>
+<script>
+    const userCard = document.querySelector(".user-card")
+    const dropdownMenu = document.querySelector(".dropdown-menu")
+    const overlay = document.createElement("div")
+    const userProfileButton = document.querySelector("#userProfileButton")
+    const userProfile = document.querySelector(".profile")
+
+    overlay.classList.add("overlay")
+    document.body.appendChild(overlay)
+
+    userCard.addEventListener("click", (event) => {
+        event.stopPropagation()
+        dropdownMenu.classList.add("show")
+        overlay.classList.add("show")
+    })
+
+    userProfileButton.addEventListener("click", (event) => {
+        event.stopPropagation()
+        userProfile.classList.add("show")
+    })
+
+    dropdownMenu.addEventListener("click", () => {
+        userProfile.classList.remove("show")
+    })
+
+    overlay.addEventListener("click", () => {
+        if (userProfile.classList.contains("show")){
+            userProfile.classList.remove("show")
+        }
+        else if (dropdownMenu.classList.contains("show")){
+            dropdownMenu.classList.remove("show")
+            overlay.classList.remove("show")
+        }
+    })
+</script>
+</body>
+</html>

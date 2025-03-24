@@ -1,0 +1,237 @@
+body{
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    min-height: 100vh;
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    animation: fadeIn 1s ease-out;
+    min-width: fit-content;
+    margin-right: 30px;
+}
+
+.user-card {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+}
+
+.user-details h2 {
+    color: white;
+    font-size: 0.8rem;
+}
+
+.admin-container {
+    animation: fadeIn 1s ease-out;
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.admin-sidebar__header{
+    color: #fff;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.admin-sidebar {
+    flex: 1;
+    height: fit-content;
+    max-width: 45%;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+}
+
+.accordion{
+    color: #fff;
+}
+
+.admin-main {
+    flex: 2;
+    height: fit-content;
+    max-width: 45%;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+}
+
+.filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.filters .btn {
+    flex: 1;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.filters .btn.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.filters .btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.complaint-list {
+    overflow-y: auto;
+}
+
+.tile {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    transition: background 0.15s ease;
+}
+
+.tile:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.tile-title {
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.tile-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.75rem;
+}
+
+.tile-status {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+}
+
+.tile-action {
+    margin-top: 1rem;
+}
+
+.btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 99;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s ease-out;
+    z-index: 100;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.dropdown-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-container ul li {
+    padding: 12px 15px;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.15s ease-in-out;
+}
+
+.dropdown-container ul li  {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease-in-out;
+}
+
+.dropdown-container ul li:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.exit-container{
+    width: 50px;
+    height: fit-content;
+    padding: 5px;
+}
+
+.exit-icon {
+    width: 5rem;
+}
+
+    @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

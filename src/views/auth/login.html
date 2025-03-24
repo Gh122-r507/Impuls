@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/spectre/spectre.min.css">
+    <link rel="stylesheet" href="styles/spectre/spectre-exp.css">
+    <link rel="stylesheet" href="styles/spectre/spectre-icons.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" sizes="16x16" href="/styles/icons/icon.svg">
+    <link rel="icon" sizes="32x32" href="/styles/icons/icon.svg">
+    <link rel="icon" sizes="96x96" href="/styles/icons/icon.svg">
+    <title><?= $pageTitle ?></title>
+</head>
+<body>
+<header class="navbar">
+    <section class="navbar-left">
+        <img style="position: absolute;" src="/styles/icons/Impuls.svg" alt="Impuls-logo" title="Импульс">
+    </section>
+</header>
+<div class="form-container">
+    <div class="video-container">
+        <video style="border-radius: 15px" controls autoplay muted>
+            <source type="video/mp4" src="/publicFiles/forest.mp4" >
+        </video>
+    </div>
+    <div class="form-wrapper">
+        <div class="card">
+            <div class="card-header">
+                <p><?= $header ?></p>
+            </div>
+            <div class="card-body">
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <input id="input-email" name="email" type="text" class="form-input" placeholder=" " required>
+                        <label class="form-label" for="input-email">Почта</label>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input id="input-password" name="password" type="password" class="form-input" placeholder=" " required>
+                        <label class="form-label" for="input-password">Пароль</label>
+                    </div>
+                    <br>
+                    <button class="btn btn-block btn-standart" type="submit">Войти</button>
+                    <div class="card-footer">
+                        <small>Нет аккаунта? | <a class="uri" href="/register">Регистрация</a></small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
